@@ -1,0 +1,11 @@
+{
+  "name": "helo",
+  "version": "1.0.0",
+  "description": "Remote control of AJA's HELO recording and streaming appliance.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Casey Selph",
+  "license": "ISC"
+}
