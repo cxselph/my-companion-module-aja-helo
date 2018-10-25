@@ -16,7 +16,7 @@ function renameTimestamp() {
 	var curr_year  	= addZero(d.getFullYear());
 	var h          	= addZero(d.getHours());
 	var m          	= addZero(d.getMinutes());
-	var stamp      	= curr_year + curr_month + curr_date + "_" + h + m;
+	var stamp      	= curr_year + "" + curr_month + "" + curr_date + "_" + h + m;
 	return stamp;
 };
 
@@ -29,7 +29,7 @@ function instance(system, id, config) {
 	self.actions(); // export actions
 
 	return self;
-}
+};
 
 
 instance.prototype.updateConfig = function(config) {
