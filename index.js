@@ -70,7 +70,7 @@ instance.prototype.init_presets = function () {
 				text: 'START RECORD',
 				size: '14',
 				color: '16777215',
-				bgcolor: 0
+				bgcolor: 52224
 			},
 			actions: [
 				{
@@ -90,7 +90,7 @@ instance.prototype.init_presets = function () {
 				text: 'STOP RECORD',
 				size: '14',
 				color: '16777215',
-				bgcolor: 0
+				bgcolor: 16711680
 			},
 			actions: [
 				{
@@ -110,7 +110,7 @@ instance.prototype.init_presets = function () {
 				text: 'START STREAM',
 				size: '14',
 				color: '16777215',
-				bgcolor: 0
+				bgcolor: 52224
 			},
 			actions: [
 				{
@@ -130,7 +130,7 @@ instance.prototype.init_presets = function () {
 				text: 'STOP STREAM',
 				size: '14',
 				color: '16777215',
-				bgcolor: 0
+				bgcolor: 16711680
 			},
 			actions: [
 				{
@@ -668,12 +668,6 @@ instance.prototype.action = function(action) {
 			});
 		}
 
-};
-
-instance.module_info = {
-	label: 'AJA HELO',
-	id: 'aja-helo',
-	version: '1.2.0'
 };
 
 instance_skel.extendedBy(instance);
