@@ -2,6 +2,24 @@ var instance_skel = require('../../instance_skel');
 var debug;
 var log;
 
+function addZero(i) {
+	 if (i < 10) {
+			 i = "0" + i;
+	 }
+	 return i;
+};
+
+function renameTimestamp() {
+	var d 			= new Date();
+	var curr_date  	= addZero(d.getDate());
+	var curr_month 	= addZero(d.getMonth()+1);
+	var curr_year  	= addZero(d.getFullYear());
+	var h          	= addZero(d.getHours());
+	var m          	= addZero(d.getMinutes());
+	var stamp      	= curr_year + curr_month + curr_date + "_" + h + m;
+	return stamp;
+};
+
 function instance(system, id, config) {
 	var self = this;
 
@@ -9,7 +27,6 @@ function instance(system, id, config) {
 	instance_skel.apply(this, arguments);
 
 	self.actions(); // export actions
-	self.init_presets();
 
 	return self;
 }
@@ -17,7 +34,6 @@ function instance(system, id, config) {
 
 instance.prototype.updateConfig = function(config) {
 	var self = this;
-	self.init_presets();
 
 	self.config = config;
 };
@@ -70,7 +86,7 @@ instance.prototype.init_presets = function () {
 				text: 'START RECORD',
 				size: '14',
 				color: '16777215',
-				bgcolor: 0
+				bgcolor: 52224
 			},
 			actions: [
 				{
@@ -90,7 +106,7 @@ instance.prototype.init_presets = function () {
 				text: 'STOP RECORD',
 				size: '14',
 				color: '16777215',
-				bgcolor: 0
+				bgcolor: 16711680
 			},
 			actions: [
 				{
@@ -110,7 +126,7 @@ instance.prototype.init_presets = function () {
 				text: 'START STREAM',
 				size: '14',
 				color: '16777215',
-				bgcolor: 0
+				bgcolor: 52224
 			},
 			actions: [
 				{
@@ -130,7 +146,7 @@ instance.prototype.init_presets = function () {
 				text: 'STOP STREAM',
 				size: '14',
 				color: '16777215',
-				bgcolor: 0
+				bgcolor: 16711680
 			},
 			actions: [
 				{
@@ -634,6 +650,10 @@ instance.prototype.actions = function(system) {
 				}
 			]
 		},
+
+		'renameFileTs': {
+			label: 'Rename File - Timestamp'
+		},
 	});
 }
 
@@ -657,6 +677,11 @@ instance.prototype.action = function(action) {
 			cmd += 'FilenamePrefix&value=' + action.options.fileName;
 			break;
 
+		case 'renameFileTs':
+			var timeStamp = renameTimestamp();
+			cmd += 'FilenamePrefix&value=' + timeStamp;
+			break;
+
 	}
 
 		if (cmd !== undefined) {
@@ -668,12 +693,6 @@ instance.prototype.action = function(action) {
 			});
 		}
 
-};
-
-instance.module_info = {
-	label: 'AJA HELO',
-	id: 'aja-helo',
-	version: '1.2.0'
 };
 
 instance_skel.extendedBy(instance);
